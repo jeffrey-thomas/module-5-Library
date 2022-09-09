@@ -49,29 +49,29 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f'User {self.email} has been added to the database'
 
-class Car(db.Model):
-    vin = db.Column(db.String(17), primary_key=True)
-    make = db.Column(db.String(50))
-    model = db.Column(db.String(50))
+class Book(db.Model):
+    isbn = db.Column(db.String(17), primary_key=True)
+    author = db.Column(db.String(100))
+    title = db.Column(db.String(100))
+    length = db.Column(db.Integer)
+    hardcover = db.Column(db.Boolean)
     year = db.Column(db.Integer)
-    color = db.Column(db.String(50))
-    user_token = db.Column(db.String, db.ForeignKey('user.token'), nullable=False)
 
-    def __init__(self, vin, make, model, year, color, user_token):
-        self.vin = vin
-        self.make = make
-        self.model = model
+    def __init__(self, isbn, author, title, length, hardcover, year, user_token):
+        self.isbn = isbn
+        self.author = author
+        self.title = title
+        self.length = length
+        self.hardcover = hardcover
         self.year = year
-        self.color = color
         self.user_token = user_token
        
-
     def __repr__(self):
-        return f'The following car has been added to the inventory: {self.vin} {self.color} {self.year} {self.make} {self.model}'
+        return f'The following book has been added to the inventory: {self.isbn}: _{self.title}_ by {self.author}'
 
-class CarSchema(ma.Schema):
+class BookSchema(ma.Schema):
     class Meta:
-        fields = [ 'vin', 'make', 'model', 'year', 'color' ]
+        fields = [ 'isbn', 'author', 'title', 'length', 'hardcover', 'year' ]
 
-car_schema = CarSchema()
-cars_schema = CarSchema(many=True)
+book_schema = BookSchema()
+books_schema = BookSchema(many=True)
