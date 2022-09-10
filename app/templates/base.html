@@ -5,14 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="../static/css/styles.css">
-<title>Car Inventory App</title>
+<title>Digital Bookshelf</title>
 </head>
 <body>
     <div class="nav-bar">
-        <section>
-            <a href="{{ url_for('site.home') }}" class="nav-brand">Car Inventory App</a>
-            {% include 'logo.html' %}
-        </section>
+        <a href="{{ url_for('site.home') }}" class="nav-brand">Digital Bookshelf</a>
         <ul class="nav-list">
             <li><a href="{{ url_for('site.home') }}" class="nav-item">Home</a></li>
             {% if current_user.is_authenticated %}
@@ -24,9 +21,10 @@
             {% endif %}
         </ul>
     </div>
-
+<main>
 {% block content %}
 {% endblock %}
+</main>
 <footer>&copy;Jeff Thomas 2022</footer>
 </body>
 </html>
