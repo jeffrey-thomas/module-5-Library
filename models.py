@@ -56,6 +56,7 @@ class Book(db.Model):
     length = db.Column(db.Integer)
     hardcover = db.Column(db.Boolean)
     year = db.Column(db.Integer)
+    user_token = db.Column(db.String,db.ForeignKey('user.token'), nullable=False)
 
     def __init__(self, isbn, author, title, length, hardcover, year, user_token):
         self.isbn = isbn

@@ -47,11 +47,14 @@ def get_single_book(current_user_token,id):
 @token_required
 def update_book(current_user_token, id):
     book = Book.query.get(id)
-    book.make = request.json['make']
-    book.model = request.json['model']
+    book.author = request.json['author']
+    book.title = request.json['title']
+    book.length = request.json['length']
+    book.hardcover = request.json['hardcover']
     book.year = request.json['year']
-    book.color = request.json['color']
     book.user_token = current_user_token.token
+
+
 
     db.session.commit()
     response = book_schema.dump(book)
